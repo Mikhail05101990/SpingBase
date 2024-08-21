@@ -1,6 +1,9 @@
 package com.example.techtask.controller;
 
 import com.example.techtask.model.User;
+import com.example.techtask.service.impl.UserService;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,14 +19,21 @@ import java.util.List;
 public class UserController {
 
   // DI here
+  @Autowired
+  private final UserService userService;
+
+  public UserController(UserService userService)
+  {
+    this.userService = userService;
+  }
 
   @GetMapping("desired-user")
   public User findUser() {
-    return null;
+    return userService.findUser();
   }
 
   @GetMapping("desired-users")
   public List<User> findUsers() {
-    return null;
+    return userService.findUsers();
   }
 }
